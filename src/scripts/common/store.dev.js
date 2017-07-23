@@ -4,8 +4,8 @@ import {createLogger} from 'redux-logger'
 import Immutable from 'immutable'
 import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
-
-import asyn from './middleware/asyn'
+import { apiMiddleware } from 'redux-api-middleware';
+import apiAuthInjector from './middleware/apiAuthInjector'
 import reducers from './reducers'
 import DevTools from '../components/devtools'
 
@@ -19,7 +19,7 @@ function configureStore() {
       reducers,
       _store,
       compose(
-        applyMiddleware(routerhistory,thunk,asyn,createLogger()),
+        applyMiddleware(routerhistory,thunk,apiAuthInjector,apiMiddleware,createLogger()),
         DevTools.instrument()
       )
     )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 //import { Dropdown } from 'react-bootstrap';
 import {localStorageSupport,SmoothlyMenu} from 'src/scripts/lib/layout.run'
 import option from '../../../static/option.js'
-
+import {logout} from '../../../static/tool.js'
 class TopHeader extends React.Component {
     componentDidMount(){
         // Open close right sidebar
@@ -141,9 +141,9 @@ class TopHeader extends React.Component {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/login">
+                            <a href="#" onClick={()=>logout()}>
                                 <i className="fa fa-sign-out"></i> 注 销
-                            </Link>
+                            </a>
                         </li>
                         <li>
                             <a className="right-sidebar-toggle">

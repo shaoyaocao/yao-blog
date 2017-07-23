@@ -42,11 +42,9 @@ var source = {
         entry: [paths.app + paths.scripts + 'App.{jsx,js}']
     },
     images: [paths.app + paths.assets + 'static/img/**/*.{jpg,jpeg,png,gif,svg}'],
-    fonts: [
-        paths.app + paths.assets + 'static/fonts/**/*.{ttf,woff,woff2,eof,svg}'
-    ],
+    fonts: [paths.app + paths.assets + 'static/fonts/**/*.{ttf,woff,woff2,eof,svg}'],
     vod:[paths.app+paths.assets+'static/vod/*'],
-    styles: [paths.app + paths.assets + 'static/style/**/*.css'],
+    styles: [paths.app + paths.assets + 'static/style/**/*.{css,png}'],
     mock: [paths.mock + '**/*'],
     html: [paths.app + paths.html + '**/*']
 };

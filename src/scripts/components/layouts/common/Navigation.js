@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Location } from 'react-router';
 import option from '../../../static/option'
+import api from '../../../static/api'
+
+
 class Navigation extends Component {
 
     componentDidMount() {
@@ -30,11 +33,11 @@ class Navigation extends Component {
                     <ul className="nav metismenu" id="side-menu" ref="menu">
                         <li className="nav-header">
                             <div className="dropdown profile-element"> <span>
-                                <img alt="image" className="img-circle" src="assets/img/face/profile_small.jpg" />
+                                <img alt="image" className="img-circle" src={api.server+localStorage.getItem("avatar")} />
                                  </span>
                                 <a data-toggle="dropdown" className="dropdown-toggle" href="#">
-                                <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">David Williams</strong>
-                                 </span> <span className="text-muted text-xs block">Art Director <b className="caret"></b></span> </span> </a>
+                                <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">{localStorage.getItem("name")}</strong>
+                                 </span> <span className="text-muted text-xs block">{localStorage.getItem("remark")}<b className="caret"></b></span> </span> </a>
                                 <ul className="dropdown-menu animated fadeInRight m-t-xs">
                                     <li><a href="profile.html">Profile</a></li>
                                     <li><a href="contacts.html">Contacts</a></li>

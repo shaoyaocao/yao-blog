@@ -1,17 +1,13 @@
 const option = {
-    title:"系统名称",
-    company:"公司信息",
+    title:"欢迎!",
+    company:"芍药的个人博客",
     developer:"开发信息",
-    version:"版本号:1.0.0",
-    api:{
-        server:"http://服务器/",
-        login:"login"
-    },
+    version:"版本号:0.0.9-beta",
     development: {
-        endpoint: "http://localhost:3000/"
+        server: "http://localhost/"
     },
     production: {
-        endpoint: "http://yourserver.com/"
+        server: "http://yourserver.com/"
     },
     salt:"lsy",
     menu:[

@@ -9,24 +9,27 @@ import RightSidebar from '../right-sidebar'
 import SmallChat from '../small-chat'
 import {RouterConfig} from '../router'
 import { correctHeight, detectBody } from 'src/scripts/lib/layout.run'
+import {history} from '../../common/store'
 
 class Main extends React.Component {
     componentWillUnmount(){
         //$('body').addClass('gray-bg');
     }
+    componentWillMount() {
+        let islogin = localStorage.getItem("islogin","0")
+        if(islogin!=="1"){
+            history.push("/")
+        }
+    }
     componentDidMount(){
 
-        //$('body').removeClass('gray-bg');
-        // Run correctHeight function on load and resize window event
         $(window).bind("load resize", function() {
             correctHeight();
             detectBody();
         });
 
-        // MetisMenu
         $('#side-menu').metisMenu();
     
-        // Correct height of wrapper after metisMenu animation.
         $('.metismenu a').click(() => {
             setTimeout(() => {
                 correctHeight();

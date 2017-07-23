@@ -193,3 +193,24 @@
 	}
 }
 // end loading
+
+.weather-form{
+  font-size: 1em;
+}
+.weather-date{
+  text-align: center;
+}
+.weather-icon{
+  text-align: center;
+}
+.weather-form div:hover{
+  background-color: #4090e8;
+  /*border:1px solid #fff;*/
+  color:#fff;
+  margin-left:-10px !important;
+  margin-right:-10px !important;
+  transition:all  .3s ;
+  /*box-shadow: 0 17px 50px 0 rgba(0,0,0,.19);
+  transform: translate3d(0,-2px,0);
+  transition: all .3s cubic-bezier(.55,0,.1,1);*/
+}

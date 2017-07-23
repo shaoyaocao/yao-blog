@@ -1,3 +1,6 @@
+$gray: #f3f3f4;
+$nav-top:#2f4050;
+
 .nav > li > a {
   color: $nav-text-color;
   font-weight: 600;
@@ -348,7 +351,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 }
 
 .navbar-fixed-top, .navbar-static-top {
-  background: $gray;
+  background: $nav-top;
 }
 
 .fixed-nav #wrapper {
