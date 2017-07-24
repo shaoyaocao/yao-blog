@@ -35,7 +35,7 @@ export default class Weather extends React.Component {
                         this.state.weather===""?<Col xs={12} className="weather-form">"天气数据载入中"</Col>:
                         this.state.weather.map((item)=>{
                             return(
-                            <Col xs={3} key={item.period} className="weather-form"  style={item.period===1?null:{borderLeft:"1px solid #fff"}}>
+                            <Col sm={3} key={item.period} className="weather-form"  style={item.period===1?null:{borderLeft:"1px solid #fff"}}>
                                 <div className="weather-date">
                                 <p style={{width:"100%"}}>{formatTimestamp2DateInHour(item.date.epoch).split("日")[0]}日</p>
                                 <p style={{width:"100%"}}>{formatTimestamp2DateInHour(item.date.epoch).split("日")[1]+" "+item.date.weekday_short}</p>

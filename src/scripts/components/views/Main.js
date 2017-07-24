@@ -41,6 +41,13 @@ class Main extends Component {
     test = (item) =>{
         console.log(item)
     }
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.data!==this.props.data){
+            let {todoTable} = this.state
+            todoTable.data = nextProps.data.data.todos
+            this.setState({todoTable})
+        }
+    }
     completedBtn =(value)=>{
         return <div className="i-checks">
                     <label style={value?{color:"green"}:{color:"red"}}>
@@ -75,7 +82,8 @@ class Main extends Component {
                             null
                         ],
                         data:this.props.data.data.todos,
-                        custom:this.customRow
+                        custom:this.customRow,
+                        action:this.props.getTodoList
                     }
                 })
             }else{
