@@ -25,10 +25,14 @@ class Main extends React.Component {
         }
     }
     componentDidMount(){
-        vex.registerPlugin(config)
-        vex.defaultOptions.className = 'vex-theme-flat-attack'
-        vex.dialog.buttons.YES.text = '确认'
-        vex.dialog.buttons.NO.text = '取消'
+        try {
+            vex.registerPlugin(config)
+            vex.defaultOptions.className = 'vex-theme-flat-attack'
+            vex.dialog.buttons.YES.text = '确认'
+            vex.dialog.buttons.NO.text = '取消'
+        } catch (error) {
+
+        }
         $(window).bind("load resize", function() {
             correctHeight();
             detectBody();

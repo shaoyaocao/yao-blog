@@ -37,14 +37,35 @@ function getTodoList(option) {
   }
 }
 
+function creatTodo(option){
+    let query = `
+        mutation createTodoMutation($todo: String!,$uid:String!) {
+            createTodo(todo: $todo,uid:$uid) {
+                    _id
+            }
+        }
+    `;
+    let variables = option;
+    return (dispatch, getState) => {
+        return dispatch(
+            {
+                [CALL_API]: {
+                    types: [MAIN.ADD_TODOS_BEGIN,MAIN.ADD_TODOS_SUCCESS,MAIN.ADD_TODOS_FAILURE],
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body:JSON.stringify({query,variables}),
+                    endpoint: api.graqhql
+                }
+            }
+        );
+    }
+}
+
 function updateTodo(option){
     let query = `
         mutation updateTodoMutation($_id: String!, $todo: String, $completed: Boolean) {
             updateTodo(_id: $_id, todo: $todo, completed: $completed) {
                     _id
-                    todo
-                    adddate
-                    completed
             }
         }
     `;
@@ -64,6 +85,30 @@ function updateTodo(option){
     }
 }
 
+function deleteTodo(option){
+    let query = `
+        mutation removeTodoMutation($_id: String!) {
+            removeTodo(_id: $_id) {
+                    _id
+            }
+        }
+    `;
+    let variables = option;
+    return (dispatch, getState) => {
+        return dispatch(
+            {
+                [CALL_API]: {
+                    types: [MAIN.DELETE_TODOS_BEGIN,MAIN.DELETE_TODOS_SUCCESS,MAIN.DELETE_TODOS_FAILURE],
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body:JSON.stringify({query,variables}),
+                    endpoint: api.graqhql
+                }
+            }
+        );
+    }
+}
+
 export {
-    getTodoList,updateTodo
+    getTodoList,updateTodo,creatTodo,deleteTodo
 }

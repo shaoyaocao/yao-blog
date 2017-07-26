@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import {Box,BoxHeader,BoxContent,Row,Col} from '../controllers/Box'
 import Weather from '../controllers/Weather'
 import YaoTable from 'src/scripts/yaocomponents/yaotable'
 import CheckBox from 'src/scripts/yaocomponents/yaocheckbox'
-import {getTodoList,updateTodo} from './redux/actions/main'
+import {getTodoList,updateTodo,creatTodo,deleteTodo} from './redux/actions/main'
 import {formatTimestamp2DateInSecond,logout,getToken} from '../../static/tool'
 import toastr from 'toastr'
 import vex from 'vex-js'
@@ -23,7 +24,13 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateTodo: (option) => {
         return  dispatch(updateTodo(option))
-    }
+    },
+    creatTodo: (option) => {
+        return  dispatch(creatTodo(option))
+    },
+    deleteTodo: (option) => {
+        return  dispatch(deleteTodo(option))
+    },
   }
 }
 
@@ -66,21 +73,74 @@ class Main extends Component {
             <span>{index+1}</span>
     }
     addTodo = () => {
+        let that = this
         vex.dialog.open({
             message: '新增任务',
             input: [
-                '<div id="vex-form"></div>',
+                '<input name="todo" type="text" placeholder="输入任务名" required />',
             ].join(''),
-            afterOpen:function(){
-
-            },
             callback: function (data) {
-                if (!data) {
-                console.log('Cancelled')
+                if (data) {
+                    let value = {
+                        todo:data.todo,
+                        uid:localStorage.getItem("id")
+                    }
+                    that.props.creatTodo(value).then(function(){
+                        that.props.getTodoList(that.state.todoList)
+                    })
                 }
             }
         })
     }
+
+    delTodo = () => {
+        let ids = []
+        $("input[name=todolist]:checked").each(function(){
+            ids.push($(this).data("id"))
+        })
+        if(ids.length===0){
+            vex.dialog.alert({message: '请先选择删除项'})
+        }
+        let del = this.del(ids)
+        for (var i = 0; i < ids.length; i++) {
+            del.next(i).then((info) => {
+                if(info.done){
+                    this.props.getTodoList(this.state.todoList)
+                    this.refreshCheckbox()
+                }
+            }).catch((err) => {
+                // this.props.getTodoList(this.state.todoList)
+                console.log(err)
+                toastr.error(err.del)
+            })
+        }
+    }
+
+    del = (ids) => {
+        let that =this;
+        return {
+            next: function(index) {
+                let option = {
+                    _id:ids[index++]
+                }
+                return new Promise((resolve,reject) => {
+                    that.props.deleteTodo(option).then(() => {
+                        if(that.props.status==="SUCCESS"){
+                            resolve({
+                                del:"SUCCESS",
+                                done:(index<ids.length)?false:true
+                            })
+                        }else{
+                            reject({
+                                del:"FAIL"
+                            })
+                        }
+                    })
+                })
+            }
+        };
+    }
+
     completedTodo = (value) => {
         let option  = {
             _id:value._id,
@@ -92,7 +152,12 @@ class Main extends Component {
         })
     }
     showCheckbox = (value) => {
-        return <input type="checkbox"/>
+        return <input name="todolist" data-id={value} type="checkbox"/>
+    }
+    refreshCheckbox = () => {
+        $("input[name=todolist]:checked").each(function(i,v){
+            $(v).prop("checked", false);
+        })
     }
     componentDidMount() {
         getToken()
@@ -161,7 +226,7 @@ class Main extends Component {
                                                     <span className="input-group-btn">
                                                         <button type="button" className="btn btn-sm btn-primary">查询</button> 
                                                         <button type="button" className="btn btn-sm btn-success" onClick={this.addTodo}>新增</button> 
-                                                        <button type="button" className="btn btn-sm btn-danger">删除</button> 
+                                                        <button type="button" className="btn btn-sm btn-danger" onClick={this.delTodo}>删除</button> 
                                                     </span>
                                                 </div>
                                             </Col>

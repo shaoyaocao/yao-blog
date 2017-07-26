@@ -34,13 +34,11 @@ export function getToken(){
   if(token === null){
     return " "
   }
+  //验证token过期
   let now = Date.now()
   if(timeout-now>0){
     return token
   }else{
-    setTimeout(function() {
-      logout()
-    }, 1000);
-    toastr.error("请重新登录")
+    logout()
   }
 }
