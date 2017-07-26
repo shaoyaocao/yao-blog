@@ -44,6 +44,7 @@ class Login extends React.Component {
         this.props.onLogin(data).then(()=>{
             if(this.props.status==="SUCCESS"){
                 localStorage.setItem("Authorization", this.props.data.authtoken)
+                localStorage.setItem("timeout", this.props.data.timeout)//token过期时间
                 localStorage.setItem("avatar",  this.props.data.msg.avatar)
                 localStorage.setItem("email", this.props.data.msg.email)
                 localStorage.setItem("name", this.props.data.msg.name)
@@ -51,7 +52,10 @@ class Login extends React.Component {
                 localStorage.setItem("remark", this.props.data.msg.remark)
                 localStorage.setItem("id", this.props.data.msg._id)
                 localStorage.setItem("islogin", "1")
-                history.push('/main')
+                toastr.success("登录成功,正在为您跳转!")
+                setTimeout(function() {
+                    history.push('/main')
+                }, 1000);
             }else{
                 toastr.error(this.props.data)
             }

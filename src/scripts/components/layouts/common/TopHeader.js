@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import {localStorageSupport,SmoothlyMenu} from 'src/scripts/lib/layout.run'
 import option from '../../../static/option.js'
 import {logout} from '../../../static/tool.js'
+import toastr from 'toastr'
+
 class TopHeader extends React.Component {
     componentDidMount(){
         // Open close right sidebar
@@ -141,7 +143,12 @@ class TopHeader extends React.Component {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={()=>logout()}>
+                            <a href="#" onClick={()=>{
+                                toastr.info("正在为您注销登录")
+                                setTimeout(function() {
+                                    logout()
+                                }, 1000); 
+                            }}>
                                 <i className="fa fa-sign-out"></i> 注 销
                             </a>
                         </li>

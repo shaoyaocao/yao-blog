@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
-class YaoTable extends Component {
-    componentDidMount() {
-        console.log(this.props.option)
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    }
+class Index extends Component {
 
     firstPage =() => {
         let {data,action,callback,custom,keylist,title} = this.props.option
@@ -71,7 +64,7 @@ class YaoTable extends Component {
     render() {
         return (
             <div className="table-responsive" style={this.props.style}>
-                 <table className="table table-striped">
+                 <table className="table table-bordered">
                     <thead>
                         <tr>
                             {this.props.option.title.map((item,index) => {
@@ -92,7 +85,13 @@ class YaoTable extends Component {
                                             if(this.props.option.callback[i]===null){
                                                 return <td key={i}>{item[keyname]}</td>
                                             }else{
-                                                return <td key={i}>{this.props.option.callback[i](item[keyname],i)}</td>
+                                                {/* 
+                                                    i        列数
+                                                    index    行数
+                                                    keyname  键名
+                                                    item     当前行记录 
+                                                */}
+                                                return <td key={i}>{this.props.option.callback[i](item[keyname],i,item,index)}</td>
                                             }
                                         }
                                     }
@@ -122,4 +121,4 @@ class YaoTable extends Component {
     }
 }
 
-export default YaoTable;
+export default Index;

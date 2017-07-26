@@ -11,6 +11,9 @@ import {RouterConfig} from '../router'
 import { correctHeight, detectBody } from 'src/scripts/lib/layout.run'
 import {history} from '../../common/store'
 
+import vex from 'vex-js'
+import config from 'vex-dialog'
+
 class Main extends React.Component {
     componentWillUnmount(){
         //$('body').addClass('gray-bg');
@@ -22,7 +25,10 @@ class Main extends React.Component {
         }
     }
     componentDidMount(){
-
+        vex.registerPlugin(config)
+        vex.defaultOptions.className = 'vex-theme-flat-attack'
+        vex.dialog.buttons.YES.text = '确认'
+        vex.dialog.buttons.NO.text = '取消'
         $(window).bind("load resize", function() {
             correctHeight();
             detectBody();

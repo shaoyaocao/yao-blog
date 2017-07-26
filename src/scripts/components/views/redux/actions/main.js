@@ -1,5 +1,4 @@
 import { CALL_API } from 'redux-api-middleware'
-
 import { MAIN } from '../types'
 
 import api from 'src/scripts/static/api'
@@ -20,7 +19,6 @@ function fetchData(value) {
             }
         }
     `;
-
     let variables = value;
     return {
         [CALL_API]: {
@@ -38,6 +36,34 @@ function getTodoList(option) {
     return dispatch(fetchData(option))
   }
 }
+
+function updateTodo(option){
+    let query = `
+        mutation updateTodoMutation($_id: String!, $todo: String, $completed: Boolean) {
+            updateTodo(_id: $_id, todo: $todo, completed: $completed) {
+                    _id
+                    todo
+                    adddate
+                    completed
+            }
+        }
+    `;
+    let variables = option;
+    return (dispatch, getState) => {
+        return dispatch(
+            {
+                [CALL_API]: {
+                    types: [MAIN.UPDATE_TODOS_BEGIN,MAIN.UPDATE_TODOS_SUCCESS,MAIN.UPDATE_TODOS_FAILURE],
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body:JSON.stringify({query,variables}),
+                    endpoint: api.graqhql
+                }
+            }
+        );
+    }
+}
+
 export {
-    getTodoList
+    getTodoList,updateTodo
 }

@@ -1,3 +1,5 @@
+import toastr from 'toastr'
+
 export function logout(){
     localStorage.clear()
     history.go(0)
@@ -24,4 +26,21 @@ export function formatTimestamp2DateInHour(date){
   var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + '日';
   var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + '时';
   return Y+M+D+h;
+}
+
+export function getToken(){
+  let timeout = localStorage.getItem("timeout")
+  let token  = localStorage.getItem("Authorization")
+  if(token === null){
+    return " "
+  }
+  let now = Date.now()
+  if(timeout-now>0){
+    return token
+  }else{
+    setTimeout(function() {
+      logout()
+    }, 1000);
+    toastr.error("请重新登录")
+  }
 }

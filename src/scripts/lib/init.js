@@ -11,6 +11,11 @@ $(document).ready(function () {
     $('#loading').fadeOut(1000,function(){
         $('#loading').remove()
     });
+    //注册icheckbox
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
     // setTimeout(function() {
     //     toastr.options = {
     //         closeButton: true,
