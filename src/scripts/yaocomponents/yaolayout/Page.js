@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 import './Page.scss'
 class Page extends Component {
     state = {  }
@@ -16,7 +17,7 @@ class Page extends Component {
                         容简介:内容简介:内容简介:内容简介:内容:</div>
                     <div className="info-count">
                         <span className="info-date"><i className="fa fa-clock-o"></i>1970-12-12 12:12:12</span>
-                        <span className="info-into"><a href=""><i className="fa fa-book"></i>开始阅读</a></span>
+                        <span className="info-into"><Link to={this.props.url||'/'}><i className="fa fa-book"></i>开始阅读</Link></span>
                         <span className="info-read"><i className="fa fa-eye"></i>0</span>
                     </div>
                 </div>

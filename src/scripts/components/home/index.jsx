@@ -7,7 +7,7 @@ import {
     Board
 } from '../../yaocomponents/yaolayout'
 import {Box,Row,Col} from '../controllers/Box'
-import { Link } from 'react-router'
+
 
 import './index.scss'
 class Home extends Component {
