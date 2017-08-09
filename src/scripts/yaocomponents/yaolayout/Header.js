@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.scss'
 class Header extends Component {
     state = {  }
@@ -17,8 +18,8 @@ class Header extends Component {
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                            <li><a href="#">芍药草的博客</a></li>
-                            <li><a href="#">测试内容</a></li>
+                            <li><Link to="/">芍药草的博客</Link></li>
+                            <li><Link to="/test">测试内容</Link></li>
                         </ul>
                     </div>
                 </div>

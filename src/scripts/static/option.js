@@ -4,10 +4,10 @@ const option = {
     developer:"开发信息",
     version:"版本号:0.0.9-beta",
     development: {
-        server: "http://api.lsy.news/"
+        server: "http://localhost/"
     },
     production: {
-        server: "http://yourserver.com/"
+        server: "http://api.lsy.news/"
     },
     salt:"lsy",
     menu:[

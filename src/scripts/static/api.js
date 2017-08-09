@@ -10,7 +10,8 @@ const api ={
     server,
     login:server+"login",
     auth:server+"auth",
-    graqhql:server+"graphql"
+    graqhql:server+"graphql",
+    open:server+"open"
 }
 
 export default api

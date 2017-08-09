@@ -1,9 +1,10 @@
 $theme-color:#33baff;
 .page{
-    border-radius: 5px;
-    box-shadow: 0 0 1px 1px $theme-color;
+    // border-radius: 5px;
+    // box-shadow: 0 0 1px 1px $theme-color;
+    border-top:1px solid $theme-color;
     height: 160px;
-    margin-top: 20px;
+    width: 100%;
 }
 
 .page{
@@ -17,7 +18,9 @@ $theme-color:#33baff;
     }
     .info-img{
         height: 140px;
-        margin: 9px;
+        margin-top: 9px;
+        margin-left: -15px;
+        margin-bottom: 9px;
         border:1px solid #33baff;
         border-radius: 5px;
     }
@@ -34,12 +37,12 @@ $theme-color:#33baff;
     .info-date{
         float: left;
         color:$theme-color;
+        margin-right: 20px;
     }
     .info-date >i{
         margin-right: 10px;
     }
     .info-read{
-        float:right;
         color:orange;
         margin-right: 20px;
     }
@@ -48,7 +51,8 @@ $theme-color:#33baff;
         margin-right: 10px;
     }
     .info-into{
-        float:right;
+        position: absolute;
+        right:0;
     }
     .info-into >a:hover{
         color:orange;
