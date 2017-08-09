@@ -19,15 +19,15 @@ const option = {
             isParent:false,
         },
         {
-            name:"多级菜单",
+            name:"博客管理",
             class:"fa fa-sitemap",
             hidden:false,
             url:"/riverallmem",
             isParent:true,
             children:[
                 {
-                    name:"二级菜单",
-                    url:"/minor",
+                    name:"文章列表",
+                    url:"/article",
                     class:"fa fa-sitemap",
                     hidden:false,
                     isParent:false

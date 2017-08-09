@@ -108,7 +108,51 @@ function deleteTodo(option){
         );
     }
 }
+function filterTodo(option){
+    let query = `
+        query filtertodosquery($filter:String!,$pageSize:Int,$pageIndex:Int){
+            filtertodos(filter:$filter,pageSize:$pageSize,pageIndex:$pageIndex){
+                size
+                index
+                pages
+                list{
+                    _id
+                    todo
+                    completed
+                    adddate
+                }
+            }
+        }
+    `;
+    let variables = option;
+    return (dispatch, getState) => {
+        return dispatch(
+            {
+                [CALL_API]: {
+                    types: [MAIN.FILTER_TODOS_BEGIN,MAIN.FILTER_TODOS_SUCCESS,MAIN.FILTER_TODOS_FAILURE],
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body:JSON.stringify({query,variables}),
+                    endpoint: api.graqhql
+                }
+            }
+        );
+    }
+}
+
+function getWeather(weatherAPI){
+    return dispatch =>{
+        $.get(weatherAPI, function (result) {
+            let { forecastday } = result.forecast.simpleforecast;
+            dispatch({
+                type: MAIN.GET_MAIN_WEATHER,
+                payload: forecastday,
+            });
+        })
+    }
+
+}
 
 export {
-    getTodoList,updateTodo,creatTodo,deleteTodo
+    getTodoList, updateTodo, creatTodo, deleteTodo, filterTodo, getWeather
 }

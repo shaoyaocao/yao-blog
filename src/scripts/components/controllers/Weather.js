@@ -6,25 +6,31 @@ let getData;
 const weatherAPI = "http://api.wunderground.com/api/34651fbe5f5c9046/forecast/lang:CN/q/zmw:00000.1.58847.json";//换成当地的日期接口
 
 export default class Weather extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={
-      weather:"",
+    constructor(props) {
+      super(props);
     }
-  }
-  componentWillMount(){
-    let that = this;
-    getData = $.get(weatherAPI,function(result){
-      let {forecastday} = result.forecast.simpleforecast;
-      that.setState({
-        weather:forecastday
-      })
-    })
-  }
-  componentWillUnmount(){
-    getData.abort();//中断回调方法
-  }
-
+    // componentWillMount() {
+    //   this.setState({
+    //     weather: this.props.weather
+    //   })
+    // }
+  // componentWillMount(){
+  //   let that = this;
+  //   getData = $.get(weatherAPI,function(result){
+  //     let {forecastday} = result.forecast.simpleforecast;
+  //     that.setState({
+  //       weather:forecastday
+  //     })
+  //   })
+  // }
+  // componentWillUnmount(){
+  //   getData.abort();//中断回调方法
+  // }
+    componentWillReceiveProps(nextProps) {
+      if(nextProps!==this.props){
+        console.log(nextProps)
+      }
+    }
   render() {
     return (
         <Box>
@@ -32,8 +38,8 @@ export default class Weather extends React.Component {
             <BoxContent>
                 <Row>
                     {
-                        this.state.weather===""?<Col xs={12} className="weather-form">"天气数据载入中"</Col>:
-                        this.state.weather.map((item)=>{
+                this.props.weather===""?<Col xs={12} className="weather-form">"天气数据载入中"</Col>:
+                this.props.weather.map((item)=>{
                             return(
                             <Col sm={3} key={item.period} className="weather-form"  style={item.period===1?null:{borderLeft:"1px solid #fff"}}>
                                 <div className="weather-date">

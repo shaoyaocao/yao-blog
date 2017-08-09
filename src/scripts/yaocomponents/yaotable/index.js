@@ -40,7 +40,7 @@ class Index extends Component {
                 rows.push(<li key={i} className={i=== (parseInt(currentpage)-1)?"footable-page active":"footable-page"}><a data-page={i} href="javascript:void(0)" onClick={this.selectPage.bind(this, i)}>{i+1}</a></li>);
             }
             rows.push(<li key={allpage} className="footable-page"><a href="javascript:void(0)">...</a></li>);
-        }else if(data.pages>10&&data.index>5&&data.index<parseInt(page.pages)-10){
+        }else if(data.pages>10&&data.index>6&&data.index<parseInt(page.pages)-10){
             let currentpage = parseInt(data.index)
             rows.push(<li key={currentpage-6} className="footable-page"><a href="javascript:void(0)">...</a></li>);
             for (let i=currentpage-5; i < currentpage; i++) {
@@ -99,12 +99,12 @@ class Index extends Component {
                             </tr>
                         })
                         :
-                        <tr><td rowSpan={this.props.titlelist.length}>无对应数据</td></tr>
+                        <tr><td colSpan={this.props.option.title.length}>无对应数据</td></tr>
                     }
                     </tbody>  
                      <tfoot>
                         <tr>
-                            <td colSpan="5" className="footable-visible">
+                            <td colSpan={this.props.option.title.length} className="footable-visible">
                             <ul className="pagination pull-right" style={{width: "100%",margin:"0"}}>
                                 <li className="footable-page-arrow"><a data-page="first" id="#first" onClick={this.firstPage}>«</a></li>
                                 <li className="footable-page-arrow"><a data-page="prev" id="#prev" onClick={this.prevPage}>‹</a></li>

@@ -60,18 +60,19 @@ class Row extends React.Component {
 class Col extends React.Component {
 
   initClass(){
-    let {xs,md,lg,sm,xl} = this.props;
+    let { xs, md, lg, sm, xl, className} = this.props;
     let xsc = typeof xs !=="undefined"? "col-md-"+xs:"";
     let mdc = typeof md !=="undefined"? "col-md-"+md:"";
     let lgc = typeof lg !=="undefined"? "col-lg-"+lg:"";
     let smc = typeof sm !=="undefined"? "col-sm-"+sm:"";
     let xlc = typeof xl !=="undefined"? "col-xl-"+xl:"";
-    return xsc+' '+mdc+' '+lgc+' '+smc+' '+xlc+' ';
+    let cn = typeof className !== "undefined" ? className:"";
+    return xsc + ' ' + mdc + ' ' + lgc + ' ' + smc + ' ' + xlc + ' ' + cn;
   }
 
   render() {
     return (
-      <div className={this.initClass()+this.props.className}>
+      <div className={this.initClass()}>
         {
           React.Children.map(this.props.children,(child) => {
             return child

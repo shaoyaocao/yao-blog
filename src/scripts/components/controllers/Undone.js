@@ -5,7 +5,7 @@ class Undone extends Component {
   render() {
     return (
       <div>
-        <img src="./assets/img/littleman.png" style={{marginBottom:"-28px"}}/>
+        <img src="/assets/img/littleman.png" style={{marginBottom:"-28px"}}/>
         <div className="progress" style={{border:"1px solid #8e8a8a"}}>
           <div className="progress-bar progress-bar-striped bg-success active" 
             style={{width:"60%"}}

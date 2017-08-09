@@ -47,7 +47,7 @@ var chunkManifestPlugin=new ChunkManifestPlugin({
 var hashedModuleIdsPlugin=new webpack.HashedModuleIdsPlugin()
 var webpackChunkHashPlugin=new WebpackChunkHashPlugin()
 var htmpWebpackPlugin=new HtmlWebpackPlugin({
-    title: '系统名称',
+    title: '芍药草的个人空间',
     template: './src/tmpl/index.ejs', // Load a custom template (ejs by default see the FAQ for details) 
     filename: '../index.html',
     hash: true,

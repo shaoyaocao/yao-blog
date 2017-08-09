@@ -1,0 +1,15 @@
+$theme-color:#33baff;
+
+.footer-yao {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $theme-color;
+}
+.footer-yao{
+    .text-muted{
+        line-height: 30px;
+        margin:0;
+        color:#fff;
+    }
+}
