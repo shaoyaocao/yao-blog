@@ -81,8 +81,33 @@ module.exports = {
     //页面入口文件配置
     entry: {
         app:'./src/app.jsx',
-        vendor:['jquery','src/scripts/lib/jquery-vendor','bootstrap','metismenu','src/scripts/lib/pace','icheck','toastr','isomorphic-fetch',
-        'es6-symbol','react','react-dom','redux','react-redux','react-router','react-router-redux','react-router-dom','redux-thunk','immutable','redux-immutablejs','normalizr','history']
+        vendor:[
+            'jquery',
+            'src/scripts/lib/jquery-vendor',
+            'bootstrap',
+            'metismenu',
+            'src/scripts/lib/pace',
+            'icheck',
+            'jquery-slimscroll',
+            'toastr',
+            'isomorphic-fetch',
+            'es6-symbol',
+            'react',
+            'react-dom',
+            'redux',
+            'react-redux',
+            'react-router',
+            'react-router-redux',
+            'react-router-dom',
+            'redux-thunk',
+            'redux-logger',
+            'immutable',
+            'redux-immutablejs',
+            'redux-devtools',
+            'redux-devtools-log-monitor',
+            'redux-devtools-dock-monitor',
+            'normalizr',
+            'history']
     },
     //入口文件输出配置
     output: {

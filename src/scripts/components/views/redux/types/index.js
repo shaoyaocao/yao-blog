@@ -1,6 +1,7 @@
-import article from './article'
+import * as ARTICLE from './article'
 import * as MAIN from './main'
 
 export {
-    MAIN
+    MAIN,
+    ARTICLE
 }
